@@ -63,29 +63,29 @@ class ArmageddonController:
     
     def fire(self, angle):
         angle /= 180
-        time = abs(angle) * self.HALF
+        duration = abs(angle) * self.HALF
         if angle > 0:
-            self.turret.send_move(self.turret.LEFT, time)
+            self.turret.send_move(self.turret.LEFT, duration)
             time.sleep(1.0)
             self.turret.send_cmd(self.turret.FIRE)
             time.sleep(1.0)
-            self.turret.send_move(self.turret.RIGHT, time)
+            self.turret.send_move(self.turret.RIGHT, duration)
         else:
-            self.turret.send_move(self.turret.RIGHT, time)
+            self.turret.send_move(self.turret.RIGHT, duration)
             time.sleep(1.0)
             self.turret.send_cmd(self.turret.FIRE)
             time.sleep(1.0)
-            self.turret.send_move(self.turret.LEFT, time)
+            self.turret.send_move(self.turret.LEFT, duration)
     
     def shake(self, angle):
         angle /= 180
         time = abs(angle) * self.HALF
         if angle > 0:
-            self.turret.send_move(self.turret.LEFT, time)
-            self.turret.send_move(self.turret.RIGHT, time)
+            self.turret.send_move(self.turret.LEFT, duration)
+            self.turret.send_move(self.turret.RIGHT, duration)
         else:
-            self.turret.send_move(self.turret.RIGHT, time)
-            self.turret.send_move(self.turret.LEFT, time)
+            self.turret.send_move(self.turret.RIGHT, duration)
+            self.turret.send_move(self.turret.LEFT, duration)
 
 if __name__ == '__main__':
     fire.Fire(ArmageddonController)
