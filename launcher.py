@@ -58,8 +58,13 @@ class ArmageddonController:
     def __init__(self):
         self.turret = Armageddon()
     
+    def _move(self, pos, function):
+        self.turret.send_move(self.turret.LEFT, pos)
+        function()
+        self.turret.send_move(self.turret.RIGHT, pos)
+    
     def fire(self, target):
-        print("SHOOTING {}".format(target))
+        self._move(1000, lambda: self.turret.send_cmd(instance.FIRE))
 
 if __name__ == '__main__':
     fire.Fire(ArmageddonController)
