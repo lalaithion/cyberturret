@@ -81,15 +81,15 @@ class ArmageddonController:
         if angle > 0:
             self.turret.send_move(self.turret.LEFT, duration)
             time.sleep(1)
-            self.turret.send_move(self.turret.RIGHT, 100)
-            self.turret.send_move(self.turret.LEFT, 100)
+            self.turret.send_move(self.turret.RIGHT, 500)
+            self.turret.send_move(self.turret.LEFT, 500)
             time.sleep(1)
             self.turret.send_move(self.turret.RIGHT, duration)
         else:
             self.turret.send_move(self.turret.RIGHT, duration)
             time.sleep(1)
-            self.turret.send_move(self.turret.LEFT, 100)
-            self.turret.send_move(self.turret.RIGHT, 100)
+            self.turret.send_move(self.turret.LEFT, 500)
+            self.turret.send_move(self.turret.RIGHT, 500)
             time.sleep(1)
             self.turret.send_move(self.turret.LEFT, duration)
 
