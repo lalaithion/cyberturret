@@ -65,9 +65,11 @@ class ArmageddonController:
         time = abs(angle) * self.HALF
         if angle > 0:
             self.turret.send_move(self.turret.LEFT, time)
+            self.turret.send_cmd(self.turret.FIRE)
             self.turret.send_move(self.turret.RIGHT, time)
         else:
             self.turret.send_move(self.turret.RIGHT, time)
+            self.turret.send_cmd(self.turret.FIRE)
             self.turret.send_move(self.turret.LEFT, time)
 
 if __name__ == '__main__':
