@@ -42,6 +42,7 @@ class Armageddon:
                 pass
 
     def send_cmd(self, cmd):
+        print(cmd)
         if self.DEVICE_THUNDER == self.DEVICE_TYPE:
             self.DEVICE.ctrl_transfer(0x21, 0x09, 0, 0,
                                       [0x02, cmd, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])
