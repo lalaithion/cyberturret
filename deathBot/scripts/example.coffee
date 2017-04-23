@@ -7,9 +7,35 @@
 #   Uncomment the ones you want to try and experiment with.
 #
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
+{spawn, exec} = require 'child_process'
+
+users = {
+	'alex': {loc: -45, name: 'Alexander Curtiss'},
+	'anya': {loc: -135, name: 'Anya Owsenek'},
+	'josh': {loc: 135, name: 'Mr. Anderson'},
+	'izaak': {loc: 45, name: 'Izaak Weiss'},
+}
 
 module.exports = (robot) ->
+	robot.hear /shoot (.*)/i, (res) ->
+		res.send "Shooting " + res.match[1] + "!"
+		user = res.match[1]
+		degree = users[res.match[1].toLowerCase()].loc
+		if degree != undefined
+			build = spawn 'sudo', ["python3", "../launcher.py", "fire", "#{degree}"]
 
+	robot.hear /(suck)|(fart)|(butt)/i, (res) ->
+		name = res.envelope.user.real_name
+		for user of users
+			if users[user].name == name
+				if users[user].mean != true
+					res.send "Be nice, #{name}. Or else..."
+					users[user].mean = true
+					build = spawn 'sudo', ["python3", "../launcher.py", "shake", "#{users[user].loc}"]
+				else
+					build = spawn 'sudo', ["python3", "../launcher.py", "fire", "#{users[user].loc}"]
+					res.send "I warned you, #{name}!"
+					users[user].mean = false
   # robot.hear /badger/i, (res) ->
   #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
   #
