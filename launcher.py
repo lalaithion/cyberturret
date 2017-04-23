@@ -66,15 +66,25 @@ class ArmageddonController:
         time = abs(angle) * self.HALF
         if angle > 0:
             self.turret.send_move(self.turret.LEFT, time)
-            time.sleep(1)
+            time.sleep(1.0)
             self.turret.send_cmd(self.turret.FIRE)
-            time.sleep(1)
+            time.sleep(1.0)
             self.turret.send_move(self.turret.RIGHT, time)
         else:
             self.turret.send_move(self.turret.RIGHT, time)
-            time.sleep(1)
+            time.sleep(1.0)
             self.turret.send_cmd(self.turret.FIRE)
-            time.sleep(1)
+            time.sleep(1.0)
+            self.turret.send_move(self.turret.LEFT, time)
+    
+    def shake(self, angle):
+        angle /= 180
+        time = abs(angle) * self.HALF
+        if angle > 0:
+            self.turret.send_move(self.turret.LEFT, time)
+            self.turret.send_move(self.turret.RIGHT, time)
+        else:
+            self.turret.send_move(self.turret.RIGHT, time)
             self.turret.send_move(self.turret.LEFT, time)
 
 if __name__ == '__main__':
