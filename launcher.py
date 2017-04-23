@@ -2,9 +2,9 @@ import platform
 import time
 import usb.core
 import usb.util
+import fire
 
-
-class Armageddon(object):
+class Armageddon:
     """
     Based on https://github.com/codedance/Retaliation
     """
@@ -38,7 +38,7 @@ class Armageddon(object):
         if "Linux" == platform.system():
             try:
                 self.DEVICE.detach_kernel_driver(0)
-            except Exception, e:
+            except Exception:
                 pass
 
     def send_cmd(self, cmd):
@@ -54,6 +54,12 @@ class Armageddon(object):
         time.sleep(duration_ms / 1000.0)
         self.send_cmd(self.STOP)
 
-instance = Armageddon()
-instance.send_move(instance.LEFT, 100)
-instance.send_cmd(instance.FIRE)
+class ArmageddonController:
+    def __init__(self):
+        self.turret = Armageddon()
+    
+    def fire(self, target):
+        print("SHOOTING {}".format(target))
+
+if __name__ == '__main__':
+    fire.Fire(ArmageddonController)
