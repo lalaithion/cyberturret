@@ -55,13 +55,20 @@ class Armageddon:
         self.send_cmd(self.STOP)
 
 class ArmageddonController:
+    HALF = 3900
+    
     def __init__(self):
         self.turret = Armageddon()
     
-    def fire(self, distance):
-        self.turret.send_move(self.turret.LEFT, distance)
-        self.turret.send_cmd(self.turret.FIRE)
-        self.turret.send_move(self.turret.RIGHT, distance)
+    def fire(self, angle):
+        angle /= 180
+        time = abs(angle) * self.HALF
+        if angle > 0:
+            self.turret.send_move(self.turret.LEFT, time)
+            self.turret.send_move(self.turret.RIGHT, time)
+        else:
+            self.turret.send_move(self.turret.RIGHT, time)
+            self.turret.send_move(self.turret.LEFT, time)
 
 if __name__ == '__main__':
     fire.Fire(ArmageddonController)
