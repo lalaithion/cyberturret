@@ -54,6 +54,7 @@ class Armageddon:
         self.send_cmd(cmd)
         time.sleep(duration_ms / 1000.0)
         self.send_cmd(self.STOP)
+        time.sleep(0.2)
 
 class ArmageddonController:
     HALF = 3900
@@ -83,14 +84,19 @@ class ArmageddonController:
             time.sleep(1)
             self.turret.send_move(self.turret.RIGHT, 500)
             self.turret.send_move(self.turret.LEFT, 500)
-            time.sleep(1)
+            self.turret.send_move(self.turret.RIGHT, 500)
+            self.turret.send_move(self.turret.LEFT, 500)
+            time.sleep(3)
             self.turret.send_move(self.turret.RIGHT, duration)
         else:
             self.turret.send_move(self.turret.RIGHT, duration)
             time.sleep(1)
             self.turret.send_move(self.turret.LEFT, 500)
             self.turret.send_move(self.turret.RIGHT, 500)
-            time.sleep(1)
+            self.turret.send_move(self.turret.LEFT, 500)
+            self.turret.send_move(self.turret.RIGHT, 500)
+            self.turret.send_move(self.turret.LEFT, 500)
+            time.sleep(3)
             self.turret.send_move(self.turret.LEFT, duration)
 
 if __name__ == '__main__':
