@@ -61,6 +61,7 @@ class ArmageddonController:
     def _move(self, pos, function):
         self.turret.send_move(self.turret.LEFT, pos)
         function()
+        time.sleep(0.01)
         self.turret.send_move(self.turret.RIGHT, pos)
     
     def fire(self, target):
