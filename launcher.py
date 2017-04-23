@@ -64,7 +64,7 @@ class ArmageddonController:
         self.turret.send_move(self.turret.RIGHT, pos)
     
     def fire(self, target):
-        self._move(1000, lambda: self.turret.send_cmd(instance.FIRE))
+        self._move(1000, lambda: self.turret.send_cmd(self.turret.FIRE))
 
 if __name__ == '__main__':
     fire.Fire(ArmageddonController)
