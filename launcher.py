@@ -86,7 +86,7 @@ class ArmageddonController:
             self.turret.send_move(self.turret.LEFT, 500)
             self.turret.send_move(self.turret.RIGHT, 500)
             self.turret.send_move(self.turret.LEFT, 500)
-            time.sleep(3)
+            time.sleep(2)
             self.turret.send_move(self.turret.RIGHT, duration)
         else:
             self.turret.send_move(self.turret.RIGHT, duration)
@@ -95,8 +95,7 @@ class ArmageddonController:
             self.turret.send_move(self.turret.RIGHT, 500)
             self.turret.send_move(self.turret.LEFT, 500)
             self.turret.send_move(self.turret.RIGHT, 500)
-            self.turret.send_move(self.turret.LEFT, 500)
-            time.sleep(3)
+            time.sleep(2)
             self.turret.send_move(self.turret.LEFT, duration)
 
 if __name__ == '__main__':
